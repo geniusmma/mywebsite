@@ -1,23 +1,444 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Gamification Site</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Asi Michael Asistin | BI & Automation | Cost Consultant | PM</title>
+  <meta name="description" content="Asi Michael Asistin — Business Intelligence & Automation Specialist and Cost Consultant at Arcadis. Power BI, Smartsheet, Power Platform, SharePoint, construction cost management, and digital transformation." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Asi Michael Asistin | BI & Automation | Cost Consultant | PM" />
+  <meta property="og:description" content="BI & Automation Specialist (Arcadis). Dashboards, workflow automation, procurement & cost analytics, and construction delivery support." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg:#0b0e14;
+      --card:#111827;
+      --muted:#9ca3af;
+      --text:#e5e7eb;
+      --line:#1f2937;
+      --accent:#60a5fa;
+      --accent2:#34d399;
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 16px;
+      --max: 1080px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background: radial-gradient(1200px 600px at 15% 0%, rgba(96,165,250,.18), transparent 50%),
+                  radial-gradient(900px 500px at 85% 10%, rgba(52,211,153,.12), transparent 50%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 48px}
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      position:sticky; top:0; padding:14px 0; backdrop-filter: blur(10px);
+    }
+    .brand{
+      display:flex; flex-direction:column; gap:2px;
+    }
+    .brand b{font-size:16px; letter-spacing:.2px}
+    .brand span{font-size:13px; color:var(--muted)}
+    nav{
+      display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;
+      font-size:14px;
+    }
+    nav a{color:var(--text); opacity:.9}
+    nav a:hover{opacity:1; text-decoration:none}
+    .hero{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(17,24,39,.92), rgba(17,24,39,.72));
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding:28px 22px;
+    }
+    .hero h1{
+      margin:0 0 10px; font-size:34px; line-height:1.15;
+      letter-spacing:-.6px;
+    }
+    .hero p{margin:0 0 16px; color:var(--muted); max-width:75ch}
+    .chips{display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 18px}
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.16);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:13px;
+      color:var(--text);
+      opacity:.92;
+    }
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.2);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:14px;
+      text-decoration:none;
+      min-width:140px;
+    }
+    .btn.primary{
+      border-color: rgba(96,165,250,.55);
+      background: rgba(96,165,250,.14);
+    }
+    .btn.secondary{
+      border-color: rgba(52,211,153,.55);
+      background: rgba(52,211,153,.12);
+    }
+    .btn:hover{filter:brightness(1.08); text-decoration:none}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:16px;
+      margin-top:16px;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      header{position:relative}
+    }
+    section.card{
+      border:1px solid var(--line);
+      background: rgba(17,24,39,.65);
+      border-radius: var(--radius);
+      padding:18px 18px 16px;
+    }
+    section.card h2{
+      margin:0 0 10px;
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 720px){
+      .two-col{grid-template-columns:1fr}
+      .hero h1{font-size:28px}
+    }
+    ul{margin:10px 0 0 18px; padding:0}
+    li{margin:6px 0; color:var(--text); opacity:.92}
+    .muted{color:var(--muted)}
+    .kpi{
+      display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;
+    }
+    .kpi .box{
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.16);
+      border-radius:14px;
+      padding:12px;
+    }
+    .kpi .box b{display:block; font-size:13px}
+    .kpi .box span{display:block; font-size:12px; color:var(--muted); margin-top:4px}
+    .proj{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .proj .item{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      background:rgba(0,0,0,.16);
+    }
+    .proj .item b{display:block; font-size:14px}
+    .proj .item p{margin:6px 0 0; color:var(--muted); font-size:13px}
+    footer{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
+      opacity:.9;
+    }
+    .inline-links a{margin-right:12px}
+    .tagline{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:8px;
+    }
+    .pillrow{
+      display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;
+    }
+    .pill{
+      font-size:12px;
+      border:1px dashed rgba(156,163,175,.35);
+      padding:6px 9px;
+      border-radius:999px;
+      color:var(--muted);
+    }
+    .notice{
+      border-left:3px solid rgba(96,165,250,.65);
+      padding:10px 12px;
+      background:rgba(96,165,250,.08);
+      border-radius:12px;
+      margin-top:12px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .sr-only{position:absolute; left:-9999px}
+  </style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <!-- Include your navigation.html here -->
-
-    <header>
-        <h1>Welcome to the Gamification Platform</h1>
+  <div class="wrap">
+    <header aria-label="Site header">
+      <div class="brand">
+        <b>Asi Michael Asistin</b>
+        <span>Business Intelligence & Automation Specialist • Cost Consultant • Project Delivery</span>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
-    <section>
-        <h2>Leaderboard</h2>
-        <p>Here you can see the rankings and leaderboard of all participants.</p>
-    </section>
 
-    <!-- Footer -->
-    <!-- Include your footer.html here -->
+    <main>
+      <section class="hero" aria-label="Hero">
+        <h1>BI dashboards, workflow automation, and cost analytics for construction delivery.</h1>
+        <p>
+          I’m <b>Asi (Michael)</b>, a <b>Business Intelligence &amp; Automation Specialist</b> and <b>Cost Consultant</b> at <b>Arcadis</b> (GEC Manila),
+          focused on practical digital transformation: Power BI reporting, Smartsheet/ACC workspace buildouts, SharePoint-based data models,
+          and process automation that reduces manual admin and improves decision-making.
+        </p>
+
+        <div class="chips" aria-label="Key focus areas">
+          <span class="chip">Power BI • Power Query • DAX</span>
+          <span class="chip">Smartsheet • No-code automation</span>
+          <span class="chip">SharePoint • Data modeling</span>
+          <span class="chip">Construction cost &amp; QS workflows</span>
+          <span class="chip">Project coordination &amp; PM support</span>
+        </div>
+
+        <div class="cta">
+          <a class="btn primary" href="#contact">Contact</a>
+          <a class="btn" href="#projects">View projects</a>
+          <!-- Put your resume PDF in repo root and rename to resume.pdf -->
+          <a class="btn secondary" href="resume.pdf" target="_blank" rel="noopener">Download resume</a>
+        </div>
+
+        <div class="notice">
+          Current: promoting into a BI &amp; Automation Specialist role at Arcadis; ongoing work includes Power BI dashboards, Smartsheet workspace delivery,
+          procurement/cost reporting, and construction platform support (ACC).
+        </div>
+      </section>
+
+      <div class="grid">
+        <section id="about" class="card" aria-label="About">
+          <h2>About</h2>
+          <p class="muted">
+            Civil engineer and quantity surveyor (AssocRICS track) with experience across site engineering, tendering, QS/cost roles, project coordination,
+            and enterprise reporting/automation. I prefer simple, maintainable systems: clear inputs, predictable outputs, low-code first, and automation where it matters.
+          </p>
+
+          <div class="two-col" style="margin-top:12px">
+            <div>
+              <h2 style="margin:0 0 6px; font-size:14px;">What I build</h2>
+              <ul>
+                <li>Executive dashboards for procurement/cost/CX reporting</li>
+                <li>Repeatable data pipelines (SharePoint → Power Query → semantic model)</li>
+                <li>Smartsheet workspaces with automation, governance, and templates</li>
+                <li>Project logs & trackers (RFIs, submittals, concrete logs, QA registers)</li>
+              </ul>
+            </div>
+            <div>
+              <h2 style="margin:0 0 6px; font-size:14px;">Work style</h2>
+              <ul>
+                <li>Outcome-driven: reduce cycle time, reduce rework, improve visibility</li>
+                <li>Documentation-first where handover is required</li>
+                <li>Automation with controls (permissions, validation, auditability)</li>
+                <li>Low-code/no-code preferred; code when it unlocks value</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="pillrow" aria-label="Highlights">
+            <span class="pill">Arcadis • Cost & Digital Transformation</span>
+            <span class="pill">Power BI • DAX • Power Query</span>
+            <span class="pill">Smartsheet • Power Platform</span>
+            <span class="pill">ACC / Construction Cloud support</span>
+            <span class="pill">QS • Cost management • PM coordination</span>
+          </div>
+        </section>
+
+        <aside class="card" aria-label="At-a-glance">
+          <h2>At-a-glance</h2>
+          <div class="kpi">
+            <div class="box">
+              <b>Location</b>
+              <span>Philippines (GEC Manila)</span>
+            </div>
+            <div class="box">
+              <b>Roles</b>
+              <span>BI &amp; Automation • QS/Cost • PM support</span>
+            </div>
+            <div class="box">
+              <b>Core tools</b>
+              <span>Power BI, Smartsheet, SharePoint</span>
+            </div>
+            <div class="box">
+              <b>Focus</b>
+              <span>Dashboards, automation, cost workflows</span>
+            </div>
+          </div>
+
+          <div class="tagline">
+            Domain strengths: construction delivery, procurement/cost reporting, digital governance, stakeholder coordination.
+          </div>
+
+          <div style="margin-top:12px">
+            <h2 style="margin:0 0 6px; font-size:14px;">Certs & credentials</h2>
+            <ul>
+              <li>APMG Project Planning &amp; Control (Foundation + Practitioner)</li>
+              <li>AssocRICS track (Quantity Surveying)</li>
+              <li>Construction tech &amp; delivery tools: Revit, Bluebeam, P6, CostX, PlanSwift</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <section id="work" class="card" style="margin-top:16px" aria-label="Work experience">
+        <h2>Work experience</h2>
+        <div class="proj">
+          <div class="item">
+            <b>Arcadis — Business Intelligence & Automation Specialist / Cost Consultant (GEC Manila)</b>
+            <p>
+              Power BI dashboards and analytics, Smartsheet workspace delivery (templates, intake, governance), SharePoint-backed data models,
+              and process improvements for global stakeholders. Support for digital data gathering using Autodesk Construction Cloud (ACC).
+            </p>
+            <div class="pillrow">
+              <span class="pill">Power BI</span>
+              <span class="pill">Power Query</span>
+              <span class="pill">DAX</span>
+              <span class="pill">Smartsheet</span>
+              <span class="pill">SharePoint</span>
+              <span class="pill">ACC</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <b>Construction industry roles (2014–present) — Engineering, QS, Tendering, PM support</b>
+            <p>
+              Background across site engineering, quantification & cost, procurement/tendering, and project delivery support.
+              Practical experience translating drawings and scope into measurable cost/quantity outputs and manageable trackers.
+            </p>
+            <div class="pillrow">
+              <span class="pill">QS / Cost management</span>
+              <span class="pill">Tendering</span>
+              <span class="pill">Project controls</span>
+              <span class="pill">Document management</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="card" style="margin-top:16px" aria-label="Skills">
+        <h2>Skills</h2>
+
+        <div class="two-col">
+          <div>
+            <h2 style="margin:0 0 6px; font-size:14px;">BI & Analytics</h2>
+            <ul>
+              <li>Power BI: data modeling, measures, KPI design, executive dashboards</li>
+              <li>Power Query: shaping, joins, date tables, data quality checks</li>
+              <li>Reporting for procurement, CX/compliance, spend/category, cost insights</li>
+            </ul>
+
+            <h2 style="margin:14px 0 6px; font-size:14px;">Automation & Platforms</h2>
+            <ul>
+              <li>Smartsheet: complex sheets, formulas, automations, governance</li>
+              <li>SharePoint Lists: structured data capture and reporting readiness</li>
+              <li>Power Platform exposure: Power Apps / Power Automate (as needed)</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 style="margin:0 0 6px; font-size:14px;">Construction / QS / PM</h2>
+            <ul>
+              <li>Cost planning, quantification, tendering support, and cost reporting</li>
+              <li>Project coordination: trackers, logs, stakeholder follow-ups</li>
+              <li>Document management and handover-ready processes</li>
+            </ul>
+
+            <h2 style="margin:14px 0 6px; font-size:14px;">Tools</h2>
+            <ul>
+              <li>Excel, VBA, Power BI, Smartsheet, SharePoint</li>
+              <li>MS Project, Primavera P6, AutoCAD, Revit, Bluebeam</li>
+              <li>CostX, PlanSwift</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="card" style="margin-top:16px" aria-label="Projects">
+        <h2>Projects</h2>
+        <p class="muted">
+          Replace the placeholders below with links to your repositories, dashboards (screenshots), or demos.
+          Keep each project to one line of outcome + tools.
+        </p>
+
+        <div class="proj">
+          <div class="item">
+            <b>Recruitment / Delivery Dashboards (Power BI)</b>
+            <p>KPIs, compliance measures, and reporting views for stakeholders. Tools: Power BI, Power Query, DAX.</p>
+          </div>
+
+          <div class="item">
+            <b>Smartsheet Workspace Templates & Intake Process</b>
+            <p>Standardized intake → workspace build → governance. Tools: Smartsheet, SharePoint (where applicable).</p>
+          </div>
+
+          <div class="item">
+            <b>Cost & Benchmarking Tool Development</b>
+            <p>Cost benchmarking workflow and reporting outputs for decision support. Tools: Excel/Power BI, process design.</p>
+          </div>
+
+          <div class="item">
+            <b>Personal site (this)</b>
+            <p>Static GitHub Pages portfolio. Tools: HTML/CSS/JS, GitHub Pages.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="card" style="margin-top:16px" aria-label="Contact">
+        <h2>Contact</h2>
+        <p class="muted">Add your real links below, then share your site URL on LinkedIn and your CV.</p>
+
+        <div class="inline-links" style="margin-top:10px">
+          <!-- Replace # with your actual links -->
+          <a href="mailto:your.email@example.com">Email</a>
+          <a href="https://www.linkedin.com/in/your-linkedin/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/geniusmma" target="_blank" rel="noopener">GitHub</a>
+        </div>
+
+        <div class="notice" style="margin-top:14px">
+          Tip: put a <b>resume.pdf</b> file in this repo root so the “Download resume” button works.
+        </div>
+      </section>
+
+      <footer>
+        <div>© <span id="y"></span> Asi Michael Asistin • Built with HTML/CSS • Hosted on GitHub Pages</div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
